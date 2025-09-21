@@ -1,7 +1,5 @@
 # How TypeScript Improves Code Quality and Project Maintainability
 
-![TypeScript Banner](https://via.placeholder.com/800x200?text=TypeScript+Code+Quality+and+Maintainability)
-
 ## 📝 Overview
 
 TypeScript has revolutionized modern web development by addressing JavaScript's limitations while maintaining its flexibility. This article explores how TypeScript significantly enhances code quality and project maintainability in software development.
@@ -30,7 +28,8 @@ TypeScript gives powerful tooling support. IDEs like VS Code can provide better 
 
 When you define interfaces or types, you’re making your code more readable and self-explanatory:
 
-```typescripinterface Product {
+```typescript
+interface Product {
   name: string;
   price: number;
 }
@@ -47,3 +46,91 @@ Now anyone reading the code knows exactly what a Product should look like—with
 ### 📈 Conclusion
 
 TypeScript improves code quality by preventing bugs early, making code more readable, and boosting developer productivity with better tooling. For long-term project success, especially in large applications or teams, TypeScript is a game changer.
+
+# Differences Between TypeScript Interfaces and Types
+
+## 📋 Overview
+
+Both interface and type are used to define shapes of objects in TypeScript, but they have important differences that affect when and how you should use them.
+
+## Key Differences
+
+## 1. Declaration Merging (Interface Only)
+
+```typescript
+// Interfaces can be merged
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+// Result: User now has both name and age
+const user: User = {
+  name: "John",
+  age: 30,
+};
+```
+
+## 2. Extending (Both, Different Syntax)
+
+```typescript
+// Interface extends interface
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+// Type intersection
+type Animal = {
+  name: string;
+};
+
+type Dog = Animal & {
+  breed: string;
+};
+```
+
+## 3. Union Types (Type Only)
+
+```typescript
+// Only possible with type
+type Status = "active" | "inactive" | "pending";
+type ID = string | number;
+
+// Not possible with interface
+interface Status {
+  // Cannot create union interfaces
+}
+```
+
+## 4. Tuple Types (Type Only)
+
+```typescript
+// Only possible with type
+type Point = [number, number];
+type Data = [string, number, boolean];
+
+// Not possible with interface
+interface Point {
+  // Cannot represent tuples
+}
+```
+
+## Use Interfaces When:
+
+- **Defining object shapes for public API**
+- **Need declaration merging**
+- **Working with object-oriented code**
+
+## Use Types When:
+
+- **Creating union types**
+- **Using mapped types**
+- **Defining tuples**
+- **Combining existing types**
